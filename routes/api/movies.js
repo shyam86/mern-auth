@@ -27,16 +27,16 @@ router.get('/getmovies',(req, res) =>{
 })
   
 router.get('/getMovieByName/:name', (req, res) =>{
-  var movie = req.body;
-  console.log(">>>>>>>>>>>>");
-  console.log(req.params);
- // if(req.body.name) movieName = req.body.name;
- 
+  console.log("in getMovieByName")
+  if(req.params.name === "name"){req.params.name = ""}
 const { errors, isValid } = validateMoviesSearch( req.params);
 console.log(errors)
 if (!isValid) {
+  console.log("is not Valid")
+
   return res.status(400).json(errors);
 }
+console.log("is  Valid")
 
       Movies.findOne({ name: req.params.name }, function(err, movieData){
           if (err) throw err;

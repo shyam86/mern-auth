@@ -11,8 +11,7 @@ class EditMovie extends Component {
         super();
         this.state = {
             name: "",
-            errors: {}
-
+            errors: {},
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -25,15 +24,7 @@ class EditMovie extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-
-        
-        const movieData = {
-            name: this.getMovieName.value,
-            
-        }
-
-              this.props.getMoviebyName( this.getMovieName.value);
-
+        this.props.getMoviebyName(this.getMovieName.value);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -44,21 +35,19 @@ class EditMovie extends Component {
         }
     }
     render() {
-        console.log(">>>>>>>>>>>>>>>>>>>>>");
-        console.log(this.props.movie);
-    //     const movieItems = allmovies.map(movies => (
+       // const { errors } = this.props.errors;
+        console.log("errors")
 
-    //     <div key={movies.id}>
-    //         <h4>{movies.name}</h4> 
-    //         Genre:  <span  style={{ color: "red"}}> {movies.genre}</span><br/>
-    //         Cast:   <span  style={{ color: "purple"}}> {movies.cast}</span>
-    //         <p><b>Summary: </b> {movies.story}</p>
-    //     </div>
-    // ))
-    
-
-        const {moviedetails}= this.props.movie;
-
+        console.log(this.props.errors)
+        var movieDetails;
+        if (this.props.movie.name) {
+            movieDetails = <div key={this.props.movie.id}>
+                <h4>{this.props.movie.name}</h4>
+                Genre:  <span style={{ color: "red" }}> {this.props.movie.genre}</span><br />
+                Cast:   <span style={{ color: "purple" }}> {this.props.movie.cast}</span>
+                <p><b>Summary: </b> {this.props.movie.story}</p>
+            </div>
+        }
         return (
             <div className="container valign-wrapper">
                 <div className="row">
@@ -71,7 +60,7 @@ class EditMovie extends Component {
                                     <label for="name">Movie Name</label>
                                     <input id="name" type="text"
                                         ref={(input) => this.getMovieName = input}
-                                     //   error={errors.name}
+                                        //   error={errors.name}
                                         // className={classnames("", {
                                         //     invalid: errors.name
                                         // })}
@@ -85,13 +74,8 @@ class EditMovie extends Component {
                                     <input type="submit" value="Search" className="btn btn-primary" />
                                 </div>
                             </form>
+                            {movieDetails}
                         </div>
-{/* 
-                        <div>
-                            {moviedetails.genre}<br/>
-                            {moviedetails.story}<br/>
-
-                        </div> */}
                     </div>
                 </div>
 

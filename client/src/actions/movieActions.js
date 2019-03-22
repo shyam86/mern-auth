@@ -55,21 +55,34 @@ console.log("movies fetching....")
 
 export const getMoviebyName = name => dispatch => {
   console.log("movies fetching....")
-
-          fetch("/api/movies/getMovieByName/"+name)
-          .then(res =>res.json())
-          .then(movie => {
+if(!name){name = "name"}          
+        fetch("/api/movies/getMovieByName/"+name)
+          .then(res =>{
+            if(res.status === 200){
+              res.json()
+            .then(movie => {
+              dispatch({
+                type: GET_MOVIE_BY_NAME, 
+                payload: movie
+            });
+             })
+          }
+        else{
+          res.json()
+          .then(
+          err =>
+          dispatch({
+            type: GET_ERRORS,
+            payload: err.data
+          }))
+        }})
+          
+           .catch(err =>
             dispatch({
-              type: GET_MOVIE_BY_NAME, 
-              payload: movie
-          });
-           })
-          //  .catch(err =>
-          //   dispatch({
-          //     type: GET_ERRORS,
-          //     payload: err.response.data
-          //   })
-          // );
+              type: GET_ERRORS,
+              payload: err.response.data
+            })
+          );
          
       
   

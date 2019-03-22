@@ -37,7 +37,7 @@ class Dashboard extends Component {
           <Link to="/users" className="waves-effect waves-light btn ">View Users</Link>
           <br/>
           <br/>
-          <Link to="/editmovie" className="waves-effect waves-light btn ">Edit Movie</Link>
+          <Link to="/editmovie" className="waves-effect waves-light btn ">Search Movie</Link>
         </div>
        </div>
        
