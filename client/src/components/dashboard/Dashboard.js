@@ -33,7 +33,7 @@ class Dashboard extends Component {
         <div className="row">
         <div className="landing-copy col s12 left-align">
           <Link to="/addmovie" className="waves-effect waves-light btn ">Add Movie </Link>&nbsp;
-          <Link to="/movieslist" className="waves-effect waves-light btn ">View Movie</Link>&nbsp;
+          <Link to="/movieslist" className="waves-effect waves-light btn ">View Movies</Link>&nbsp;
           <Link to="/users" className="waves-effect waves-light btn ">View Users</Link>
           <br/>
           <br/>

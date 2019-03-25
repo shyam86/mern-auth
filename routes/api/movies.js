@@ -143,4 +143,26 @@ router.post('/editmovie', (req, res) =>{
 
 
 
+  
+router.delete('/deletemovie/:name', (req, res) =>{
+  console.log("in getMovieByName")
+  if(req.params.name === "name"){req.params.name = ""}
+const { errors, isValid } = validateMoviesSearch( req.params);
+console.log(errors)
+if (!isValid) {
+  console.log("is not Valid")
+
+  return res.status(400).json(errors);
+}
+console.log("is  Valid")
+console.log(req.params.name);
+      Movies.findOneAndRemove({ name: req.params.name }, function(err, movieData){
+          if (err) throw err;
+          if(!movieData){
+            return res.status(400).json({ name: "Movie Not found" });
+          }
+          res.json("Movie " +movieData.name+" has been Deleted");
+      })
+  });
+
 module.exports = router;
